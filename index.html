@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WIT(ty) Card Deck</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header Container -->
+  <div class="app-header_container">
+    <div class="app-header_content">
+      <!-- Left Section: Logo -->
+      <div class="app-header_logo">
+        <img src="images/nesta-logo.png" alt="Nesta Logo" class="header-logo">
+      </div>
+
+      <!-- Right Section: Navigation Wrapper -->
+      <div class="app-header_navigation-wrapper">
+        <div class="app-header_navigation">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#deck" class="nav-link">The Deck</a>
+          <a href="#my-cards" class="nav-link">My Cards</a>
+          <a href="#my-decks" class="nav-link">My Decks</a>
+          <a href="#feedback" class="nav-link">Feedback</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Section -->
+  <div class="main-content">
+    <div class="container">
+      <div class="left-column">
+        <div class="left-column">
+          <div class="logo-title-wrapper">
+            <img src="images/logo.jpg" alt="WIT(ty) Logo" class="left-column-logo">
+          </div>
+        </div>
+        
+      
+
+        <div class="category-selection">
+          <!-- Add Dropdown -->
+          <label for="deck-dropdown">Select Deck:</label>
+          <select id="deck-dropdown" onchange="handleDeckChange()">
+            <option value="master-deck">Master Deck</option>
+            <option value="ideation">Ideation</option>
+            <option value="delivery">Delivery</option>
+            <option value="review">Review</option>
+          </select>
+        
+          <h3>Choose Categories:</h3>
+          <label>
+            <input type="checkbox" class="category" value="bring-best" onchange="updateDeck()"> Bring Your Best
+          </label><br>
+          <label>
+            <input type="checkbox" class="category" value="experiment" onchange="updateDeck()"> Experiment, Then Ditch or Commit
+          </label><br>
+          <label>
+            <input type="checkbox" class="category" value="make-contact" onchange="updateDeck()"> Make Contact with Reality
+          </label><br>
+          <label>
+            <input type="checkbox" class="category" value="mission-impact" onchange="updateDeck()"> Achieving Mission Impact
+          </label><br>
+          <label>
+            <input type="checkbox" class="category" value="think-big" onchange="updateDeck()"> Think Big, Be Outlandish
+          </label><br>
+          <label>
+            <input type="checkbox" class="category" value="value-progress" onchange="updateDeck()"> Value Progress Over Process
+          </label><br>
+        
+          <button id="select-all-button" onclick="toggleSelectAll()">Select All</button>
+        </div>
+        
+
+        <!-- Add New Card Section -->
+        <div class="add-card-section">
+          <h3>Add New Card:</h3>
+          <select id="new-category">
+            <option value="bring-best">Bring Your Best</option>
+            <option value="experiment">Experiment, Then Ditch or Commit</option>
+            <option value="make-contact">Make Contact with Reality</option>
+            <option value="mission-impact">Achieving Mission Impact</option>
+            <option value="think-big">Think Big, Be Outlandish</option>
+            <option value="value-progress">Value Progress Over Process</option>
+          </select>
+          <input type="text" id="new-card-text" placeholder="Enter card text">
+          <button id="add-card-button" onclick="addNewCard()">Add Card</button>
+          <div id="submission-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-column">
+        <!-- Shuffle Button -->
+        <img src="images/Untitled-7.png" alt="Shuffle Button" id="shuffle-button-image" onclick="shuffleAndSelect()">
+
+        <!-- Selected Card Display -->
+        <div id="selected-card-container"></div>
+
+        <!-- Deck Display Area -->
+        <div id="deck-container"></div>
+        <div class="right-column">
+          <!-- Custom Deck Container -->
+          <div id="custom-deck-container" class="deck-container">
+            <!-- Custom cards will be dynamically rendered here -->
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    // JavaScript code
+
+    const deckByCategory = {
+"bring-best": [
+'./images/bring-best/bring-best-1.jpeg',
+'./images/bring-best/bring-best-2.jpeg',
+'./images/bring-best/bring-best-3.jpeg',
+'./images/bring-best/bring-best-4.jpeg',
+'./images/bring-best/bring-best-5.jpeg'
+],
+"experiment": [
+'./images/experiment/experiment-1.jpeg',
+'./images/experiment/experiment-2.jpeg',
+'./images/experiment/experiment-3.jpeg',
+'./images/experiment/experiment-4.jpeg',
+'./images/experiment/experiment-5.jpeg'
+],
+"make-contact": [
+'./images/make-contact/make-contact-1.jpeg',
+'./images/make-contact/make-contact-2.jpeg',
+'./images/make-contact/make-contact-3.jpeg',
+'./images/make-contact/make-contact-4.jpeg',
+'./images/make-contact/make-contact-5.jpeg',
+'./images/make-contact/make-contact-6.jpeg'
+],
+"mission-impact": [
+'./images/mission-impact/mission-impact-1.jpeg',
+'./images/mission-impact/mission-impact-2.jpeg',
+'./images/mission-impact/mission-impact-3.jpeg',
+'./images/mission-impact/mission-impact-4.jpeg',
+'./images/mission-impact/mission-impact-5.jpeg',
+'./images/mission-impact/mission-impact-6.jpeg',
+'./images/mission-impact/mission-impact-7.jpeg'
+],
+"think-big": [
+'./images/think-big/think-big-1.jpeg',
+'./images/think-big/think-big-2.jpeg',
+'./images/think-big/think-big-3.jpeg',
+'./images/think-big/think-big-4.jpeg',
+'./images/think-big/think-big-5.jpeg',
+'./images/think-big/think-big-6.jpeg',
+'./images/think-big/think-big-7.jpeg',
+'./images/think-big/think-big-8.jpeg',
+'./images/think-big/think-big-9.jpeg'
+],
+"value-progress": [
+'./images/value-progress/value-progress-1.jpeg',
+'./images/value-progress/value-progress-2.jpeg',
+'./images/value-progress/value-progress-3.jpeg',
+'./images/value-progress/value-progress-4.jpeg',
+'./images/value-progress/value-progress-5.jpeg'
+]
+};
+
+    let customCards = JSON.parse(localStorage.getItem('customCards')) || [];
+
+    // Function to update the deck based on selected categories
+    function updateDeck() {
+      const selectedCategories = Array.from(document.querySelectorAll('.category:checked')).map(checkbox => checkbox.value);
+      let deck = [];
+
+      selectedCategories.forEach(category => {
+        if (deckByCategory[category]) {
+          deck = deck.concat(deckByCategory[category]);
+        }
+        if (customCards[category]) {
+          deck = deck.concat(customCards[category]);
+        }
+      });
+
+      renderDeck(deck);
+      const selectedCardContainer = document.getElementById('selected-card-container');
+      selectedCardContainer.innerHTML = '';
+    }
+
+    // Function to render the deck of cards based on selected categories
+    function renderDeck(deck) {
+      const container = document.getElementById('deck-container');
+      container.innerHTML = ''; // Clear the container
+
+      if (deck.length === 0) {
+        return;
+      }
+
+      deck.forEach(card => {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'card';
+        cardElement.style.backgroundImage = `url(${card})`;
+
+        const textElement = document.createElement('div');
+        textElement.className = 'card-text';
+        textElement.textContent = card.text || 'Default Text';
+
+        cardElement.appendChild(textElement);
+        cardElement.onclick = () => selectCard(card);
+
+        // Add delete button for custom cards only
+        if (customCards[card.category]) {
+          const deleteButton = document.createElement('div');
+          deleteButton.className = 'delete-button';
+          deleteButton.textContent = '×';
+          deleteButton.onclick = (event) => {
+            event.stopPropagation();
+            deleteCard(card);
+          };
+          cardElement.appendChild(deleteButton);
+        }
+
+        container.appendChild(cardElement);
+      });
+    }
+
+    // Function to select a card (display it in a larger view)
+    function selectCard(card) {
+      const selectedCardContainer = document.getElementById('selected-card-container');
+      selectedCardContainer.innerHTML = ''; // Clear any previously selected card
+
+      const selectedCardElement = document.createElement('div');
+      selectedCardElement.className = 'selected-card';
+      selectedCardElement.style.backgroundImage = `url(${card})`;
+
+      const textElement = document.createElement('div');
+      textElement.className = 'card-text';
+      textElement.textContent = card.text || 'Default Text';
+
+      selectedCardElement.appendChild(textElement);
+      selectedCardContainer.appendChild(selectedCardElement); // Display enlarged card
+    }
+
+    // Function to shuffle the deck and show a random card
+    function shuffleAndSelect() {
+      const selectedCategories = Array.from(document.querySelectorAll('.category:checked')).map(checkbox => checkbox.value);
+      let deck = [];
+      selectedCategories.forEach(category => {
+        deck = deck.concat(deckByCategory[category] || []);
+        deck = deck.concat(customCards[category] || []);
+      });
+
+      if (deck.length === 0) {
+        alert("No cards available. Please select a category.");
+        return;
+      }
+
+      // Shuffle the deck using the Fisher-Yates algorithm
+      const shuffledDeck = deck.sort(() => Math.random() - 0.5);
+      const container = document.getElementById('deck-container');
+      const selectedCardContainer = document.getElementById('selected-card-container');
+
+      selectedCardContainer.innerHTML = '';
+      container.innerHTML = '';
+
+      shuffledDeck.forEach((card, index) => {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'card small';
+        cardElement.style.backgroundImage = `url(${card})`;
+        cardElement.style.animationDelay = `${index * 0.1}s`;
+
+        const textElement = document.createElement('div');
+        textElement.className = 'card-text';
+        textElement.textContent = card.text || 'Default Text';
+
+        cardElement.appendChild(textElement);
+        cardElement.onclick = () => selectCard(card);
+        container.appendChild(cardElement);
+      });
+
+      setTimeout(() => {
+        container.innerHTML = '';
+        const selectedCard = shuffledDeck[0];
+        const selectedCardElement = document.createElement('div');
+        selectedCardElement.className = 'selected-card';
+        selectedCardElement.style.backgroundImage = `url(${selectedCard})`;
+
+        const textElement = document.createElement('div');
+        textElement.className = 'card-text';
+        textElement.textContent = selectedCard.text || 'Default Text';
+
+        selectedCardElement.appendChild(textElement);
+        selectedCardContainer.appendChild(selectedCardElement);
+      }, 1000);
+    }
+
+    // Function to toggle the "Select All" checkbox
+    function toggleSelectAll() {
+      const checkboxes = document.querySelectorAll('.category');
+      const isChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = !isChecked;
+      });
+
+      updateDeck();
+    }
+
+    // Function to add a new custom card
+    function addNewCard() {
+      const category = document.getElementById('new-category').value;
+      const text = document.getElementById('new-card-text').value.trim();
+
+      if (!text) {
+        alert('Please enter text for the card.');
+        return;
+      }
+
+      const newCard = { text, category };
+      customCards[category] = customCards[category] || [];
+      customCards[category].push(newCard);
+
+      localStorage.setItem('customCards', JSON.stringify(customCards));
+
+      updateDeck();
+      document.getElementById('submission-feedback').textContent = 'Card added!';
+      setTimeout(() => {
+        document.getElementById('submission-feedback').textContent = '';
+      }, 2000);
+    }
+
+    // Function to delete a custom card
+    function deleteCard(card) {
+      const category = Object.keys(customCards).find(cat =>
+        customCards[cat]?.some(c => c.text === card.text)
+      );
+
+      if (category) {
+        customCards[category] = customCards[category].filter(c => c.text !== card.text);
+        localStorage.setItem('customCards', JSON.stringify(customCards));
+        updateDeck();
+      }
+    }
+  </script>
+</body>
+</html>
+<div id="gallery-container" style="display: none;">
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- Cards will be dynamically added here -->
+  </div>
+</div>
+<div id="full-page-container" style="display: none; position: relative;">
+  <div id="return-button">
+    <img src="images/Return.png" alt="Return">
+  </div>
+  <h1 id="master-deck-title" style="text-align: center;">Master Deck</h1>
+  <div class="container">
+    <!-- Cards for the Master Deck will dynamically render here -->
+  </div>
+</div>
+<div id="gallery-container" style="display: block;">
+
+<div id="full-page-container" style="display: none; position: relative;">
+  <div id="return-button">
+    <img src="images/Return.png" alt="Return">
+  </div>
+  <h1 id="deck-title" style="text-align: center;"></h1>
+  <div class="container">
+    <!-- Cards for the selected deck will dynamically render here -->
+  </div>
+</div>

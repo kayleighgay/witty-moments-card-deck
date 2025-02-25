@@ -1,0 +1,434 @@
+/* General Body Styles */
+body {
+  font-family: "Averta", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #D2C9C0;
+  color: white;
+}
+
+/* Header Container */
+.app-header_container {
+  width: 1265.83px;
+  height: 44.98px;
+  padding: 13.5px 14px;
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.app-header_content {
+  width: 1209.84px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo {
+  width: 100px;
+  height: auto;
+}
+
+.app-header_navigation {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  background-color: #f0f0f0;
+  color: black;
+}
+
+/* Main Content Section */
+.main-content {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: #D2C9C0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+
+/* Left Column */
+.left-column {
+  width: 30%;
+  background-color: #0000FF;
+  clip-path: none; /* Remove polygon to prevent clipping */
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  position: relative;
+}
+
+/* Logo and Title Wrapper */
+.logo-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  white-space: normal;
+  overflow: visible; /* Ensures the logo is not cut off */
+}
+
+.left-column {
+  width: 30%; /* Reduced width for a narrower column */
+  background-color: #0000FF;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 90% 100%, 0% 100%);
+  color: white;
+  padding: 10px 10px; /* Small padding for a more compact layout */
+  text-align: center;
+  position: relative;
+}
+
+.logo-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Reduced gap between logo and text */
+  margin-bottom: 10px; /* Slight space below the logo for better alignment */
+}
+
+.left-column-logo {
+  width: 150%; /* Increased size by 50% */
+  height: auto;
+  display: block;
+}
+
+.category-selection {
+  margin-top: 5px;
+  font-size: 1rem;
+  text-align: left; /* Aligns the header and labels to the left */
+}
+
+.category-selection label {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  gap: 5px;
+  margin-bottom: 2.5px; /* Reduced margin for 50% less vertical spacing */
+}
+
+.category-selection input.category {
+  transform: scale(0.9); /* Decrease checkbox size slightly */
+}
+
+h3 {
+  font-size: 1.1rem; /* Slightly smaller heading size */
+  margin: 5px 0; /* Reduce space around the headings */
+}
+
+#select-all-button {
+  margin-top: 10px; /* Add a small margin above "Select All" button */
+}
+
+.category-selection input.category {
+  transform: scale(1.1);
+  width: 20px;
+  height: 20px;
+}
+
+/* Add Card Section */
+.add-card-section {
+  display: none;
+  width: 100%;
+  text-align: left;  /* Align contents to the left */
+}
+
+.add-card-section select,
+.add-card-section input,
+.add-card-section button {
+  width: 100%;  /* Full width to align uniformly */
+  margin-bottom: 10px; /* Add spacing between inputs */
+}
+
+#select-all-button {
+  background-color: #FBB531;
+  color: black;
+  border: none;
+  font-size: 0.84375rem; /* Decreased size by 25% (from 1.125rem) */
+  padding: 6.75px 11.25px; /* Adjusted padding proportionally */
+  margin-top: 10px;
+  text-align: center;
+  align-self: center;
+  display: block;
+}
+
+#select-all-button:hover {
+  background-color: #f8a825; /* Slightly darker color for hover effect */
+}
+
+#add-card-button {
+  background-color: #FBB531; /* Same aesthetics as "Select All" button */
+  color: black;
+  border: none;
+  font-size: 0.84375rem;
+  padding: 6.75px 11.25px;
+  margin-top: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#add-card-button:hover {
+  background-color: #f8a825;
+}
+
+/* Right Column */
+.right-column {
+  width: 60%;
+  background-color: #D2C9C0;
+  text-align: center;
+  padding: 15px;
+  position: relative;
+}
+
+/* Shuffle Button Positioning */
+#shuffle-button-image {
+  width: 140px;
+  height: auto;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 10; /* Ensure the button stays on top */
+}
+
+#deck-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-start;
+  padding: 10px;
+  background-color: #D2C9C0;
+  margin-right: 160px; /* Add margin to the right to avoid overlap */
+}
+
+.card {
+  width: 130px;
+  height: 190px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.card-text {
+  font-family: "Averta", sans-serif;
+  font-size: 12px;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.delete-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.selected-card {
+  width: 240px;
+  height: 360px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.selected-card .card-text {
+  font-size: 16px;
+  text-align: center;
+  color: black;
+  padding: 15px;
+}
+
+/* Shuffle animation keyframes */
+@keyframes shuffle {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateX(-10px) translateY(-5px) rotate(-5deg);
+  }
+  40% {
+    transform: translateX(10px) translateY(5px) rotate(5deg);
+  }
+  60% {
+    transform: translateX(-5px) translateY(-10px) rotate(-2deg);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+}
+
+.card.shuffling {
+  animation: shuffle 0.8s ease-in-out forwards;
+  z-index: 10; /* Ensure the cards stay visible during shuffle */
+  position: absolute; /* So cards overlap during the shuffle */
+}
+/* Gallery Container */
+#gallery-container {
+  width: 90%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Gallery Card */
+.gallery-card {
+  width: 200px;
+  height: 150px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white; /* Fallback for no background image */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  background-size: cover; /* Ensure background covers the card */
+  background-position: center; /* Centre the background image */
+}
+
+.gallery-card-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: white; /* Ensure text is readable over images */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Add contrast */
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background behind the title */
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0 0 8px 8px; /* Rounded corners for title background */
+}
+
+
+.gallery-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-card-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+/* Add Page Card */
+.gallery-card.add-page {
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: grey;
+  background-color: #f9f9f9;
+}
+/* Full Page Container for Master Deck */
+#full-page-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: transparent;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#full-page-container .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centre align cards */
+  gap: 20px; /* Space between cards */
+}
+/* Styling for the Return Button inside Full Page Container */
+#return-button {
+  position: absolute; /* Positioned relative to #full-page-container */
+  top: 20px; /* Adjust distance from the top */
+  left: 20px; /* Adjust distance from the left */
+  z-index: 10; /* Ensure it stays on top of other content */
+}
+
+#return-button img {
+  width: 40px; /* Button size */
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.2s ease; /* Smooth hover effect */
+}
+
+#return-button img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+#custom-deck-container .card {
+  position: relative;
+  width: 150px;
+  height: 200px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#custom-deck-container .card-text {
+  font-size: 14px;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  padding: 5px;
+}
+
+#custom-deck-container .delete-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
